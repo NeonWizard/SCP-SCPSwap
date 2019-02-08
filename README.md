@@ -1,5 +1,5 @@
 # SCPSwap
-A simple plugin for SCP:SL Smod2 servers that allows players to change which SCP they are at the start of the round. There is configurable conditions to be met to allow swapping SCPs, such as time and health limits. If a player wants to switch to an already taken SCP, a request is sent to the user to allow them to accept the trade.
+A simple plugin for SCP:SL Smod2 servers that allows players to change which SCP they are at the start of the round. There are configurable conditions to be met to allow swapping SCPs, such as time and health limits. If a player wants to switch to an already taken SCP, a request is sent to the user to allow them to accept the trade.
 
 ## Installation
 **[Smod2](https://github.com/Grover-c13/Smod2) must be installed for this to work.**
