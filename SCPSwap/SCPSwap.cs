@@ -36,6 +36,7 @@ namespace SCPSwap
 
 			// Register events
 			this.AddEventHandlers(new MiscEventHandler(this));
+			this.AddEventHandlers(new CommandEvent(this));
 
 			// Register commands
 			this.AddCommand("scpswapdisable", new SCPSwapDisableCommand(this));

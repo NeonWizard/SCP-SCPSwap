@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace SCPSwap
 {
-	class MiscEventHandler : IEventHandlerWaitingForPlayers, IEventHandlerCallCommand
+	class MiscEventHandler : IEventHandlerWaitingForPlayers
 	{
 		private readonly SCPSwap plugin;
 
@@ -17,15 +17,6 @@ namespace SCPSwap
 		public void OnWaitingForPlayers(WaitingForPlayersEvent ev)
 		{
 			if (!this.plugin.GetConfigBool("scpswap_enable")) this.plugin.pluginManager.DisablePlugin(plugin);
-		}
-
-		public void OnCallCommand(PlayerCallCommandEvent ev)
-		{
-			this.plugin.Info(ev.Command);
-			if (ev.Command.ToLower().StartsWith("scpswap"))
-			{
-				ev.ReturnMessage = "Swapped SCP successfully";
-			}
 		}
 	}
 }
