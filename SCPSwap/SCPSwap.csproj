@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\SCPSwapDisableCommand.cs" />
+    <Compile Include="Events\CommandEvent.cs" />
     <Compile Include="Events\MiscEventHandler.cs" />
     <Compile Include="SCPSwap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

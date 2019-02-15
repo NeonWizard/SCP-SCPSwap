@@ -17,6 +17,8 @@ namespace SCPSwap
 		public void OnWaitingForPlayers(WaitingForPlayersEvent ev)
 		{
 			if (!this.plugin.GetConfigBool("scpswap_enable")) this.plugin.pluginManager.DisablePlugin(plugin);
+
+			this.plugin.pendingSwaps.Clear();
 		}
 	}
 }

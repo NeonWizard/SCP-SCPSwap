@@ -19,6 +19,8 @@ namespace SCPSwap
 	)]
 	public class SCPSwap : Plugin
 	{
+		public Dictionary<string, string> pendingSwaps;
+
 		public override void OnDisable()
 		{
 			this.Info("SCPSwap has been disabled.");
@@ -26,6 +28,8 @@ namespace SCPSwap
 
 		public override void OnEnable()
 		{
+			this.pendingSwaps = new Dictionary<string, string>();
+
 			this.Info("SCPSwap has loaded successfully.");
 		}
 
