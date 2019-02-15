@@ -11,7 +11,7 @@ A simple plugin for SCP:SL Smod2 servers that allows players to change which SCP
 Command | Value Type | Description
 :---: | :---: | ---
 SCPSWAPDISABLE | | **Disables the SCPSwap plugin.** Server will need to restart to enable it again.
-SCPSWAP | Int | Attempt to swap with the SCP designated under the provided Int.
+SWAPSCP | Int | Attempt to swap with the SCP designated under the provided Int.
 
 ## Configuration
 Config Option | Value Type | Default Value | Description

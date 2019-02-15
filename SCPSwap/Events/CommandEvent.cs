@@ -17,7 +17,7 @@ namespace SCPSwap
 		public void OnCallCommand(PlayerCallCommandEvent ev)
 		{
 			this.plugin.Info(ev.Command);
-			if (ev.Command.ToLower().StartsWith("scpswap"))
+			if (ev.Command.ToLower().StartsWith("swapscp"))
 			{
 				ev.ReturnMessage = "Swapped SCP successfully";
 			}
