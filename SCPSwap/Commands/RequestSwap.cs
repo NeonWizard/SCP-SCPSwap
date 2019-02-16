@@ -36,6 +36,7 @@ namespace SCPSwap
 
 		public void OnCall(PlayerCallCommandEvent ev, string[] args)
 		{
+			// TODO: Configurable time period and health percentage in which you can swap SCPs
 			List<Player> curPlayers = this.plugin.Server.GetPlayers();
 
 			// -- Parse SCP integer argument & ensure it's a valid SCP number
@@ -75,8 +76,17 @@ namespace SCPSwap
 			{
 				foreach (Player target in targets)
 				{
-					// TODO: Format broadcast with colors
-					target.PersonalBroadcast(7, ev.Player.Name + " (" + ev.Player.TeamRole.Name + ") wants to swap SCPs with you. Type .SCPSWAP in GameConsole to accept.", false);
+					target.PersonalBroadcast(
+						10,
+						"<color=#eee><color=#eeee99>"
+							+ ev.Player.Name +
+						"</color> (<color=#ff9999>"
+							+ ev.Player.TeamRole.Name +
+						"</color>) wants to swap SCPs with you."
+							+ "\n" +
+						"Type <color=#eeeeaa>.SCPSWAP</color> in <color=#bbaaff>GameConsole</color> to accept.</color>",
+						false
+					);
 					this.plugin.pendingSwaps.Add(new SwapRequest(ev.Player, target));
 				}
 
