@@ -37,6 +37,7 @@ namespace SCPSwap
 
 		public void OnCall(PlayerCallCommandEvent ev, string[] args)
 		{
+			// TODO: Color GameConsole ReturnMessage output
 			List<Player> curPlayers = this.plugin.Server.GetPlayers();
 
 			// -- Parse SCP integer argument & ensure it's a valid SCP number
