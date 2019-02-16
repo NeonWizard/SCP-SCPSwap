@@ -14,14 +14,17 @@ namespace SCPSwap
 		name = "SCPSwap",
 		description = "",
 		id = "xyz.wizardlywonders.SCPSwap",
-		version = "1.1.0",
+		version = "1.2.0",
 		SmodMajor = 3,
 		SmodMinor = 2,
 		SmodRevision = 2
 	)]
 	public class SCPSwap : Plugin
 	{
-		public List<SwapRequest> pendingSwaps;
+		public List<SwapRequest> pendingSwaps = new List<SwapRequest>();
+
+		internal AcceptSwap AcceptSwapCommand;
+		internal RequestSwap RequestSwapCommand;
 
 		public override void OnDisable()
 		{
@@ -30,8 +33,6 @@ namespace SCPSwap
 
 		public override void OnEnable()
 		{
-			this.pendingSwaps = new List<SwapRequest>();
-
 			this.Info("SCPSwap has loaded successfully.");
 		}
 
@@ -46,6 +47,8 @@ namespace SCPSwap
 
 			// Register commands
 			this.AddCommand("scpswapdisable", new SCPSwapDisableCommand(this));
+			this.AcceptSwapCommand = new AcceptSwap(this);
+			this.RequestSwapCommand = new RequestSwap(this);
 		}
 	}
 

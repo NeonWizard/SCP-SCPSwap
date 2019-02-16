@@ -51,6 +51,9 @@
     <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AcceptSwap.cs" />
+    <Compile Include="Commands\IGameConsoleCommand.cs" />
+    <Compile Include="Commands\RequestSwap.cs" />
     <Compile Include="Commands\SCPSwapDisableCommand.cs" />
     <Compile Include="Events\CommandEvent.cs" />
     <Compile Include="Events\MiscEventHandler.cs" />
