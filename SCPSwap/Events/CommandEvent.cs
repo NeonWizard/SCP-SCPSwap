@@ -30,6 +30,12 @@ namespace SCPSwap
 				ev.ReturnMessage = "You are not an SCP!";
 				return;
 			}
+			// -- Zombies can't swap either :^)
+			else if (ev.Player.TeamRole.Role == Role.SCP_049_2)
+			{
+				ev.ReturnMessage = "nice try lol";
+				return;
+			}
 
 			// -- Execute respective commands
 			string[] cmdSplit = command.Split(' ');
