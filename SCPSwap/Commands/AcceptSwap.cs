@@ -52,12 +52,20 @@ namespace SCPSwap
 				if (target.TeamRole.Team != Smod2.API.Team.SCP || ev.Player.TeamRole.Team != Smod2.API.Team.SCP)
 				{
 					ev.ReturnMessage = "One of the players in the swap request is no longer an SCP.";
+					return;
 				}
 
 				Role tmp = ev.Player.TeamRole.Role;
 
 				ev.Player.ChangeRole(target.TeamRole.Role);
 				target.ChangeRole(tmp);
+
+				this.plugin.pendingSwaps = this.plugin.pendingSwaps.Where(sr =>
+					sr.requester.SteamId != ev.Player.SteamId &&
+					sr.requester.SteamId != target.SteamId &&
+					sr.target.SteamId != ev.Player.SteamId &&
+					sr.target.SteamId != target.SteamId
+				).ToList();
 
 				ev.ReturnMessage = "You've swapped SCPs with " + target.Name + " successfully!";
 			}
