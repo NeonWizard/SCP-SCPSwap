@@ -1,9 +1,11 @@
 using Smod2;
+using Smod2.API;
 using Smod2.Attributes;
 using Smod2.EventHandlers;
 using Smod2.Events;
 using Smod2.Config;
 using System.Collections.Generic;
+using System;
 
 namespace SCPSwap
 {
@@ -12,14 +14,14 @@ namespace SCPSwap
 		name = "SCPSwap",
 		description = "",
 		id = "xyz.wizardlywonders.SCPSwap",
-		version = "1.0.0",
+		version = "1.1.0",
 		SmodMajor = 3,
 		SmodMinor = 2,
 		SmodRevision = 2
 	)]
 	public class SCPSwap : Plugin
 	{
-		public Dictionary<string, string> pendingSwaps;
+		public List<SwapRequest> pendingSwaps;
 
 		public override void OnDisable()
 		{
@@ -28,7 +30,7 @@ namespace SCPSwap
 
 		public override void OnEnable()
 		{
-			this.pendingSwaps = new Dictionary<string, string>();
+			this.pendingSwaps = new List<SwapRequest>();
 
 			this.Info("SCPSwap has loaded successfully.");
 		}
@@ -44,6 +46,18 @@ namespace SCPSwap
 
 			// Register commands
 			this.AddCommand("scpswapdisable", new SCPSwapDisableCommand(this));
+		}
+	}
+
+	public struct SwapRequest
+	{
+		public Player requester;
+		public Player target;
+
+		public SwapRequest(Player r, Player t)
+		{
+			this.requester = r;
+			this.target = t;
 		}
 	}
 }

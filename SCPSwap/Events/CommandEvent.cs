@@ -41,11 +41,47 @@ namespace SCPSwap
 				return;
 			}
 
-			// -- Validate argument count
+			List<Player> curPlayers = this.plugin.Server.GetPlayers();
+
+			// -- Handle 0-arg call to accept trade
 			string[] cmdSplit = command.Split(' ');
-			if (cmdSplit.Count() != 2)
+			if (cmdSplit.Count() == 1)
 			{
-				ev.ReturnMessage = "Invalid number of arguments.";
+				// -- Fetch any requests targetting command caller
+				List<SwapRequest> applicablePending = this.plugin
+					.pendingSwaps
+					.Where(x => x.target.SteamId == ev.Player.SteamId)
+					.ToList();
+
+				Player target = null;
+				foreach (SwapRequest sr in applicablePending)
+				{
+					target = curPlayers.Where(x => x.SteamId == sr.requester.SteamId).FirstOrDefault();
+
+					// If person making the request is still on the server, go ahead
+					if (target != null) break;
+				}
+
+				if (target == null)
+				{
+					ev.ReturnMessage = "You don't have any pending requests!";
+				}
+				else
+				{
+					Role tmp = ev.Player.TeamRole.Role;
+
+					ev.Player.ChangeRole(target.TeamRole.Role);
+					target.ChangeRole(tmp);
+
+					ev.ReturnMessage = "You've swapped SCPs with " + target.Name + " successfully!";
+				}
+
+				return;
+			}
+			// -- Too many arguments.
+			else if (cmdSplit.Count() > 2)
+			{
+				ev.ReturnMessage = "Too many arguments supplied!";
 				return;
 			}
 
@@ -66,7 +102,7 @@ namespace SCPSwap
 
 			// -- Attempt to find SCPs already with this role
 			List<Player> targets = new List<Player>();
-			foreach (Player p in this.plugin.Server.GetPlayers())
+			foreach (Player p in curPlayers)
 			{
 				// -- Special case for different 939s
 				if (num == 939 && (p.TeamRole.Role == Role.SCP_939_53 || p.TeamRole.Role == Role.SCP_939_89))
@@ -85,8 +121,11 @@ namespace SCPSwap
 			{
 				foreach (Player target in targets)
 				{
-					target.PersonalBroadcast(7, ev.Player.Name + " (" + ev.Player.TeamRole.Name + ") wants to swap SCPs with you.", false);
+					target.PersonalBroadcast(7, ev.Player.Name + " (" + ev.Player.TeamRole.Name + ") wants to swap SCPs with you. Type .SWAPSCP in GameConsole to accept.", false);
+					this.plugin.pendingSwaps.Add(new SwapRequest(ev.Player, target));
 				}
+
+				ev.ReturnMessage = "Sent a swap request to " + ev.Player.Name + ".";
 			}
 			// -- Otherwise, just swap right to it :)
 			else
