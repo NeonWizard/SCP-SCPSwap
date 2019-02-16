@@ -20,10 +20,10 @@ namespace SCPSwap
 
 		public void OnCallCommand(PlayerCallCommandEvent ev)
 		{
-			// -- Check for SWAPSCP command
-			// TODO: Change command SCPSWAP
+			// -- Check for SCPSWAP command
+			// TODO: Add SCPLIST command
 			string command = ev.Command.ToLower();
-			if (!command.StartsWith("swapscp")) return;
+			if (!command.StartsWith("scpswap")) return;
 
 			// -- Validate player is an SCP
 			// TODO: add configuration to allow non-SCPs to run scpswap

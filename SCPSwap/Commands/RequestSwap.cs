@@ -75,7 +75,8 @@ namespace SCPSwap
 			{
 				foreach (Player target in targets)
 				{
-					target.PersonalBroadcast(7, ev.Player.Name + " (" + ev.Player.TeamRole.Name + ") wants to swap SCPs with you. Type .SWAPSCP in GameConsole to accept.", false);
+					// TODO: Format broadcast with colors
+					target.PersonalBroadcast(7, ev.Player.Name + " (" + ev.Player.TeamRole.Name + ") wants to swap SCPs with you. Type .SCPSWAP in GameConsole to accept.", false);
 					this.plugin.pendingSwaps.Add(new SwapRequest(ev.Player, target));
 				}
 
