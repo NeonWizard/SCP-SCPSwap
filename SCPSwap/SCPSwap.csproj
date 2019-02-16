@@ -54,6 +54,7 @@
     <Compile Include="Commands\AcceptSwap.cs" />
     <Compile Include="Commands\IGameConsoleCommand.cs" />
     <Compile Include="Commands\RequestSwap.cs" />
+    <Compile Include="Commands\SCPList.cs" />
     <Compile Include="Commands\SCPSwapDisableCommand.cs" />
     <Compile Include="Events\CommandEvent.cs" />
     <Compile Include="Events\MiscEventHandler.cs" />

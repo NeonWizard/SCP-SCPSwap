@@ -12,6 +12,7 @@ Command | Value Type | Description
 :---: | :---: | ---
 SCPSWAPDISABLE | | **Disables the SCPSwap plugin.** Server will need to restart to enable it again.
 SCPSWAP | Int | Attempt to swap with the SCP designated under the provided Int.
+SCPLIST | | List all alive SCPs (only accessable to SCPs).
 
 ## Configuration
 Config Option | Value Type | Default Value | Description

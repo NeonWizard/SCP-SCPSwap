@@ -20,10 +20,9 @@ namespace SCPSwap
 
 		public void OnCallCommand(PlayerCallCommandEvent ev)
 		{
-			// -- Check for SCPSWAP command
-			// TODO: Add SCPLIST command
+			// -- Check for SCPSWAP/SCPLIST command
 			string command = ev.Command.ToLower();
-			if (!command.StartsWith("scpswap")) return;
+			if (!command.StartsWith("scpswap") && !command.StartsWith("scplist")) return;
 
 			// -- Validate player is an SCP
 			// TODO: add configuration to allow non-SCPs to run scpswap
@@ -35,9 +34,17 @@ namespace SCPSwap
 
 			// -- Execute respective commands
 			string[] cmdSplit = command.Split(' ');
-			if (cmdSplit.Count() == 1) this.plugin.AcceptSwapCommand.OnCall(ev, new string[] { }); // Handle 0-arg call to accept trade
-			else if (cmdSplit.Count() == 2) this.plugin.RequestSwapCommand.OnCall(ev, new string[] { cmdSplit[1] }); // Handle swapping SCPs
-			else ev.ReturnMessage = "Invalid argument amount.";
+			if (cmdSplit[0] == "scpswap")
+			{
+				if (cmdSplit.Count() == 1) this.plugin.AcceptSwapCommand.OnCall(ev, new string[] { }); // Handle 0-arg call to accept trade
+				else if (cmdSplit.Count() == 2) this.plugin.RequestSwapCommand.OnCall(ev, new string[] { cmdSplit[1] }); // Handle swapping SCPs
+				else ev.ReturnMessage = "Invalid argument amount.";
+			}
+			else if (cmdSplit[0] == "scplist")
+			{
+				if (cmdSplit.Count() == 1) this.plugin.SCPListCommand.OnCall(ev, new string[] { }); // List SCPs
+				else ev.ReturnMessage = "Invalid argument amount";
+			}
 		}
 	}
 }

@@ -14,7 +14,7 @@ namespace SCPSwap
 		name = "SCPSwap",
 		description = "",
 		id = "xyz.wizardlywonders.SCPSwap",
-		version = "1.2.0",
+		version = "1.2.1",
 		SmodMajor = 3,
 		SmodMinor = 2,
 		SmodRevision = 2
@@ -25,6 +25,7 @@ namespace SCPSwap
 
 		internal AcceptSwap AcceptSwapCommand;
 		internal RequestSwap RequestSwapCommand;
+		internal SCPList SCPListCommand;
 
 		public override void OnDisable()
 		{
@@ -49,6 +50,7 @@ namespace SCPSwap
 			this.AddCommand("scpswapdisable", new SCPSwapDisableCommand(this));
 			this.AcceptSwapCommand = new AcceptSwap(this);
 			this.RequestSwapCommand = new RequestSwap(this);
+			this.SCPListCommand = new SCPList(this);
 		}
 	}
 
