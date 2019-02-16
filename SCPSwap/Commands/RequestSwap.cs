@@ -105,7 +105,7 @@ namespace SCPSwap
 				if (this.plugin.GetConfigBool("scpswap_preservehealth"))
 				{
 					PlayerStats playerInfo = ((GameObject)ev.Player.GetGameObject()).GetComponent<PlayerStats>();
-					float percent = playerInfo.health / playerInfo.maxHP;
+					float percent = (float)playerInfo.health / playerInfo.maxHP;
 					ev.Player.ChangeRole(this.SCPIDMap[num]);
 					ev.Player.SetHealth((int)(percent * ev.Player.GetHealth()));
 				}

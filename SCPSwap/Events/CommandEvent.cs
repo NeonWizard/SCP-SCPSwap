@@ -52,9 +52,8 @@ namespace SCPSwap
 					ev.ReturnMessage = "You can only swap within the first " + timePeriod + " seconds of the round.";
 					return;
 				}
-				else if ((playerInfo.health / playerInfo.maxHP * 100) < minHealth)
+				else if (((float)playerInfo.health / playerInfo.maxHP * 100) < minHealth)
 				{
-					this.plugin.Info(playerInfo.health + " / " + playerInfo.maxHP);
 					ev.ReturnMessage = "Your health is too low! You must be above " + minHealth + "% HP to swap SCPs.";
 					return;
 				}
