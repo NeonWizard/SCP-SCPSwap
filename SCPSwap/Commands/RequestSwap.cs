@@ -5,7 +5,7 @@ using Smod2.EventHandlers;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-
+using UnityEngine;
 
 namespace SCPSwap
 {
@@ -102,8 +102,19 @@ namespace SCPSwap
 			// -- Otherwise, just swap right to it :)
 			else
 			{
+				if (this.plugin.GetConfigBool("scpswap_preservehealth"))
+				{
+					PlayerStats playerInfo = ((GameObject)ev.Player.GetGameObject()).GetComponent<PlayerStats>();
+					float percent = playerInfo.health / playerInfo.maxHP;
+					ev.Player.ChangeRole(this.SCPIDMap[num]);
+					ev.Player.SetHealth((int)(percent * ev.Player.GetHealth()));
+				}
+				else
+				{
+					ev.Player.ChangeRole(this.SCPIDMap[num]);
+				}
+
 				ev.ReturnMessage = "Swapped SCPs successfully! :)";
-				ev.Player.ChangeRole(this.SCPIDMap[num]);
 			}
 		}
 	}
