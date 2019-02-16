@@ -19,7 +19,8 @@ namespace SCPSwap
 			{ 79, Role.SCP_079 },
 			{ 96, Role.SCP_096 },
 			{ 106, Role.SCP_106 },
-			{ 173, Role.SCP_173 }
+			{ 173, Role.SCP_173 },
+			{ 939, Role.SCP_939_53 }
 		};
 
 		public RequestSwap(SCPSwap plugin) => this.plugin = plugin;
@@ -52,14 +53,17 @@ namespace SCPSwap
 					ev.ReturnMessage = "The specified SCP does not exist.";
 					return;
 				}
+				else if (this.SCPIDMap[num] == ev.Player.TeamRole.Role)
+				{
+					ev.ReturnMessage = "You're already " + ev.Player.TeamRole.Name + "!";
+					return;
+				}
 			}
 
 			// -- Attempt to find SCPs already with this role
 			List<Player> targets = new List<Player>();
 			foreach (Player p in curPlayers)
 			{
-				if (p.SteamId == ev.Player.SteamId) continue; // can't swap with yourself silly
-
 				// -- Special case for different 939s
 				if (num == 939 && (p.TeamRole.Role == Role.SCP_939_53 || p.TeamRole.Role == Role.SCP_939_89))
 				{

@@ -14,7 +14,7 @@ namespace SCPSwap
 		name = "SCPSwap",
 		description = "",
 		id = "xyz.wizardlywonders.SCPSwap",
-		version = "1.3.0",
+		version = "1.3.1",
 		SmodMajor = 3,
 		SmodMinor = 2,
 		SmodRevision = 2
