@@ -25,7 +25,6 @@ namespace SCPSwap
 			if (!command.StartsWith("scpswap") && !command.StartsWith("scplist")) return;
 
 			// -- Validate player is an SCP
-			// TODO: add configuration to allow non-SCPs to run scpswap
 			if (ev.Player.TeamRole.Team != Smod2.API.Team.SCP)
 			{
 				ev.ReturnMessage = "You are not an SCP!";
@@ -36,6 +35,25 @@ namespace SCPSwap
 			string[] cmdSplit = command.Split(' ');
 			if (cmdSplit[0] == "scpswap")
 			{
+				// -- Check within swap period and required health
+				int timePeriod = this.plugin.GetConfigInt("scpswap_timeperiod");
+				int minHealth = this.plugin.GetConfigInt("scpswap_minhealth");
+
+				PlayerStats playerInfo = ((GameObject)ev.Player.GetGameObject()).GetComponent<PlayerStats>();
+
+				if (!this.plugin.inSwapPeriod)
+				{
+					ev.ReturnMessage = "You can only swap within the first " + timePeriod + " seconds of the round.";
+					return;
+				}
+				else if ((playerInfo.health / playerInfo.maxHP * 100) < minHealth)
+				{
+					this.plugin.Info(playerInfo.health + " / " + playerInfo.maxHP);
+					ev.ReturnMessage = "Your health is too low! You must be above " + minHealth + "% HP to swap SCPs.";
+					return;
+				}
+
+				// -- Run accept/request commands
 				if (cmdSplit.Count() == 1) this.plugin.AcceptSwapCommand.OnCall(ev, new string[] { }); // Handle 0-arg call to accept trade
 				else if (cmdSplit.Count() == 2) this.plugin.RequestSwapCommand.OnCall(ev, new string[] { cmdSplit[1] }); // Handle swapping SCPs
 				else ev.ReturnMessage = "Invalid argument amount.";

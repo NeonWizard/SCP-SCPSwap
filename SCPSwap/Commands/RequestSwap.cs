@@ -36,7 +36,6 @@ namespace SCPSwap
 
 		public void OnCall(PlayerCallCommandEvent ev, string[] args)
 		{
-			// TODO: Configurable time period and health percentage in which you can swap SCPs
 			List<Player> curPlayers = this.plugin.Server.GetPlayers();
 
 			// -- Parse SCP integer argument & ensure it's a valid SCP number
@@ -59,6 +58,8 @@ namespace SCPSwap
 			List<Player> targets = new List<Player>();
 			foreach (Player p in curPlayers)
 			{
+				if (p.SteamId == ev.Player.SteamId) continue; // can't swap with yourself silly
+
 				// -- Special case for different 939s
 				if (num == 939 && (p.TeamRole.Role == Role.SCP_939_53 || p.TeamRole.Role == Role.SCP_939_89))
 				{
@@ -74,6 +75,7 @@ namespace SCPSwap
 			// -- Send swap request to target(s)
 			if (targets.Count() > 0)
 			{
+				List<string> output = new List<string>();
 				foreach (Player target in targets)
 				{
 					target.PersonalBroadcast(
@@ -88,9 +90,10 @@ namespace SCPSwap
 						false
 					);
 					this.plugin.pendingSwaps.Add(new SwapRequest(ev.Player, target));
+					output.Add("Sent a swap request to: " + target.Name);
 				}
 
-				ev.ReturnMessage = "Sent a swap request to " + ev.Player.Name + ".";
+				ev.ReturnMessage = string.Join("\n", output.ToArray());
 			}
 			// -- Otherwise, just swap right to it :)
 			else

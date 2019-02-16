@@ -49,6 +49,11 @@ namespace SCPSwap
 			}
 			else
 			{
+				if (target.TeamRole.Team != Smod2.API.Team.SCP || ev.Player.TeamRole.Team != Smod2.API.Team.SCP)
+				{
+					ev.ReturnMessage = "One of the players in the swap request is no longer an SCP.";
+				}
+
 				Role tmp = ev.Player.TeamRole.Role;
 
 				ev.Player.ChangeRole(target.TeamRole.Role);

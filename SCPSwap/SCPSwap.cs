@@ -27,6 +27,8 @@ namespace SCPSwap
 		internal RequestSwap RequestSwapCommand;
 		internal SCPList SCPListCommand;
 
+		public bool inSwapPeriod = true;
+
 		public override void OnDisable()
 		{
 			this.Info("SCPSwap has been disabled.");
@@ -40,7 +42,11 @@ namespace SCPSwap
 		public override void Register()
 		{
 			// Register config
+			// TODO: Add config setting to preserve health percentage across swap
+			// TODO: Add config setting for max number of swaps per player per round
 			this.AddConfig(new ConfigSetting("scpswap_enable", true, SettingType.BOOL, true, "Whether SCPSwap should be enabled on server start."));
+			this.AddConfig(new ConfigSetting("scpswap_timeperiod", 600, SettingType.NUMERIC, true, "Amount of time in seconds after round start that player can swap SCPs."));
+			this.AddConfig(new ConfigSetting("scpswap_minhealth", 98, SettingType.NUMERIC, true, "Minimum health percentage required to be able to swap SCPs."));
 
 			// Register events
 			this.AddEventHandlers(new MiscEventHandler(this));
