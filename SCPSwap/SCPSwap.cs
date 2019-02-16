@@ -46,7 +46,7 @@ namespace SCPSwap
 		{
 			// Register config
 			this.AddConfig(new ConfigSetting("scpswap_enable", true, SettingType.BOOL, true, "Whether SCPSwap should be enabled on server start."));
-			this.AddConfig(new ConfigSetting("scpswap_timeperiod", 30, SettingType.NUMERIC, true, "Amount of time in seconds after round start that player can swap SCPs."));
+			this.AddConfig(new ConfigSetting("scpswap_timeperiod", 60, SettingType.NUMERIC, true, "Amount of time in seconds after round start that player can swap SCPs."));
 			this.AddConfig(new ConfigSetting("scpswap_minhealth", 98, SettingType.NUMERIC, true, "Minimum health percentage required to be able to swap SCPs."));
 			this.AddConfig(new ConfigSetting("scpswap_preservehealth", true, SettingType.BOOL, true, "Whether to preserve health percentage on a swap."));
 			this.AddConfig(new ConfigSetting("scpswap_maxswaps", 1, SettingType.NUMERIC, true, "How many swaps can be done per player, per round."));
