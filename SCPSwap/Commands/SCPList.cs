@@ -31,7 +31,7 @@ namespace SCPSwap
 			{
 				if (p.TeamRole.Team == Smod2.API.Team.SCP)
 				{
-					output.Add("[" + ev.Player.TeamRole.Name + "] " + ev.Player.Name);
+					output.Add("[" + p.TeamRole.Name + "] " + p.Name);
 				}
 			}
 
