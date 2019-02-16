@@ -114,6 +114,9 @@ namespace SCPSwap
 					ev.Player.ChangeRole(this.SCPIDMap[num]);
 				}
 
+				// -- Keep track of how many times they've swapped this round
+				this.plugin.playerSwapCounts.AddOrUpdate(ev.Player.SteamId, 1, (id, count) => count + 1);
+
 				ev.ReturnMessage = "Swapped SCPs successfully! :)";
 			}
 		}

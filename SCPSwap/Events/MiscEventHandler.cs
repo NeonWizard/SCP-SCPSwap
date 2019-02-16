@@ -27,6 +27,7 @@ namespace SCPSwap
 			this.timePeriod = this.plugin.GetConfigInt("scpswap_timeperiod");
 
 			this.plugin.pendingSwaps.Clear();
+			this.plugin.playerSwapCounts.Clear();
 		}
 
 		public void OnRoundStart(RoundStartEvent ev)

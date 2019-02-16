@@ -58,6 +58,13 @@ namespace SCPSwap
 					return;
 				}
 
+				// -- Check under maxswaps
+				if (this.plugin.playerSwapCounts.GetOrAdd(ev.Player.SteamId, (key) => 0) >= this.plugin.GetConfigInt("scpswap_maxswaps"))
+				{
+					ev.ReturnMessage = "You've hit the maximum number of swaps for this round.";
+					return;
+				}
+
 				// -- Run accept/request commands
 				if (cmdSplit.Count() == 1) this.plugin.AcceptSwapCommand.OnCall(ev, new string[] { }); // Handle 0-arg call to accept trade
 				else if (cmdSplit.Count() == 2) this.plugin.RequestSwapCommand.OnCall(ev, new string[] { cmdSplit[1] }); // Handle swapping SCPs

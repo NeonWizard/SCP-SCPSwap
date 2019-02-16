@@ -87,6 +87,9 @@ namespace SCPSwap
 					sr.target.SteamId != target.SteamId
 				).ToList();
 
+				// -- Keep track of how many times they've swapped this round
+				this.plugin.playerSwapCounts.AddOrUpdate(ev.Player.SteamId, 1, (id, count) => count + 1);
+
 				ev.ReturnMessage = "You've swapped SCPs with " + target.Name + " successfully!";
 			}
 		}
