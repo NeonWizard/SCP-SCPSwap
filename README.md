@@ -11,6 +11,10 @@ A simple plugin for SCP:SL Smod2 servers that allows players to change which SCP
 Command | Value Type | Description
 :---: | :---: | ---
 SCPSWAPDISABLE | | **Disables the SCPSwap plugin.** Server will need to restart to enable it again.
+
+## GameConsole Commands
+Command | Value Type | Description
+:---: | :---: | ---
 SCPSWAP | Int | Attempt to swap with the SCP designated under the provided Int.
 SCPLIST | | List all alive SCPs (only accessible to SCPs).
 
