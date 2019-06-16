@@ -15,10 +15,10 @@ namespace SCPSwap
 		name = "SCPSwap",
 		description = "",
 		id = "xyz.wizardlywonders.SCPSwap",
-		version = "1.0.0",
+		version = "1.0.1",
 		SmodMajor = 3,
-		SmodMinor = 2,
-		SmodRevision = 2
+		SmodMinor = 4,
+		SmodRevision = 1
 	)]
 	public class SCPSwap : Plugin
 	{
@@ -45,11 +45,11 @@ namespace SCPSwap
 		public override void Register()
 		{
 			// Register config
-			this.AddConfig(new ConfigSetting("scpswap_enable", true, SettingType.BOOL, true, "Whether SCPSwap should be enabled on server start."));
-			this.AddConfig(new ConfigSetting("scpswap_timeperiod", 60, SettingType.NUMERIC, true, "Amount of time in seconds after round start that player can swap SCPs."));
-			this.AddConfig(new ConfigSetting("scpswap_minhealth", 98, SettingType.NUMERIC, true, "Minimum health percentage required to be able to swap SCPs."));
-			this.AddConfig(new ConfigSetting("scpswap_preservehealth", true, SettingType.BOOL, true, "Whether to preserve health percentage on a swap."));
-			this.AddConfig(new ConfigSetting("scpswap_maxswaps", 1, SettingType.NUMERIC, true, "How many swaps can be done per player, per round."));
+			this.AddConfig(new ConfigSetting("scpswap_enable", true, true, "Whether SCPSwap should be enabled on server start."));
+			this.AddConfig(new ConfigSetting("scpswap_timeperiod", 60, true, "Amount of time in seconds after round start that player can swap SCPs."));
+			this.AddConfig(new ConfigSetting("scpswap_minhealth", 98, true, "Minimum health percentage required to be able to swap SCPs."));
+			this.AddConfig(new ConfigSetting("scpswap_preservehealth", true, true, "Whether to preserve health percentage on a swap."));
+			this.AddConfig(new ConfigSetting("scpswap_maxswaps", 1, true, "How many swaps can be done per player, per round."));
 
 			// Register events
 			this.AddEventHandlers(new MiscEventHandler(this));

@@ -22,7 +22,7 @@ namespace SCPSwap
 
 		public void OnWaitingForPlayers(WaitingForPlayersEvent ev)
 		{
-			if (!this.plugin.GetConfigBool("scpswap_enable")) this.plugin.pluginManager.DisablePlugin(plugin);
+			if (!this.plugin.GetConfigBool("scpswap_enable")) this.plugin.PluginManager.DisablePlugin(plugin);
 
 			this.timePeriod = this.plugin.GetConfigInt("scpswap_timeperiod");
 

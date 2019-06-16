@@ -28,7 +28,7 @@ namespace SCPSwap
 		public string[] OnCall(ICommandSender sender, string[] args)
 		{
 			plugin.Info(sender + " ran the " + GetUsage() + " command!");
-			this.plugin.pluginManager.DisablePlugin(this.plugin);
+			this.plugin.PluginManager.DisablePlugin(this.plugin);
 			return new string[] { "SCPSwap Disabled" };
 		}
 	}
