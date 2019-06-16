@@ -22,7 +22,7 @@ SCPLIST | | List all alive SCPs (only accessible to SCPs).
 Config Option | Value Type | Default Value | Description
 :---: | :---: | :---: | ---
 scpswap_enable | Bool | True | Whether SCPSwap should be enabled on server start.
-scpswap_timeperiod | Int | 30 | Amount of time in seconds after round start that player can swap SCPs.
+scpswap_timeperiod | Int | 60 | Amount of time in seconds after round start that player can swap SCPs.
 scpswap_minhealth | Int | 98 | Minimum health percentage required to be able to swap SCPs.
 scpswap_preservehealth | Bool | True | Whether to preserve health percentage on a swap.
 scpswap_maxswaps | Int | 1 | How many swaps can be done per player, per round.
