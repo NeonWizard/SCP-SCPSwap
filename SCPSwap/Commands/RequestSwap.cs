@@ -59,6 +59,11 @@ namespace SCPSwap
 					ev.ReturnMessage = "You're already " + ev.Player.TeamRole.Name + "!";
 					return;
 				}
+				else if (this.plugin.GetConfigList("scpswap_disallowed_scps").Contains(args[0]))
+				{
+					ev.ReturnMessage = "The server owner has disabled swapping to SCP " + args[0] + ".";
+					return;
+				}
 			}
 
 			// -- Attempt to find SCPs already with this role
@@ -80,6 +85,16 @@ namespace SCPSwap
 			// -- Send swap request to target(s)
 			if (targets.Count() > 0)
 			{
+				// -- Don't send request if sender is disallowed SCP
+				foreach (string x in this.plugin.GetConfigList("scpswap_disallowed_scps"))
+				{
+					if (this.SCPIDMap[Int32.Parse(x)] == ev.Player.TeamRole.Role)
+					{
+						ev.ReturnMessage = "The server owner has disabled swapping with SCP " + x + ".";
+						return;
+					}
+				}
+
 				List<string> output = new List<string>();
 				foreach (Player target in targets)
 				{
