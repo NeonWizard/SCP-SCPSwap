@@ -26,6 +26,7 @@ scpswap_timeperiod | Int | 60 | Amount of time in seconds after round start that
 scpswap_minhealth | Int | 98 | Minimum health percentage required to be able to swap SCPs.
 scpswap_preservehealth | Bool | True | Whether to preserve health percentage on a swap.
 scpswap_maxswaps | Int | 1 | How many swaps can be done per player, per round.
+scpswap_disallowed_scps | List | Empty | List of SCPs that cannot be swapped to or from.
 
 *Note that all configs should go in your server config file, not config_remoteadmin.txt
 
